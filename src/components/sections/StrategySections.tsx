@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -223,24 +224,27 @@ function PillarVisual({ index, tags, label }: { index: number; tags: string[]; l
       )}
       {index === 4 && (
         <div className="workflow-scene">
-          <svg viewBox="0 0 500 180" preserveAspectRatio="none">
-            <path d="M75 90H180Q200 90 200 65V40Q200 20 220 20H295Q315 20 315 40V65Q315 90 340 90H425M200 90V140Q200 160 225 160H295Q315 160 315 140V90" />
-          </svg>
           {tags.map((tag, i) => (
-            <div className={`workflow-node node-${i}`} key={tag}>
-              {i === 0 ? (
-                <Megaphone size={24} />
-              ) : i === 1 ? (
-                <Workflow size={30} />
-              ) : (
-                <Handshake size={24} />
+            <Fragment key={tag}>
+              {i > 0 && (
+                <span className="workflow-connector">
+                  <ArrowRight size={15} />
+                </span>
               )}
-              <span>{tag}</span>
-            </div>
+              <div className={`workflow-node node-${i}`}>
+                <span className="workflow-icon">
+                  {i === 0 ? (
+                    <Megaphone size={24} />
+                  ) : i === 1 ? (
+                    <Workflow size={30} />
+                  ) : (
+                    <Handshake size={24} />
+                  )}
+                </span>
+                <span className="workflow-label">{tag}</span>
+              </div>
+            </Fragment>
           ))}
-          <span className="workflow-check">
-            <Check size={15} />
-          </span>
         </div>
       )}
       {index === 5 && (
