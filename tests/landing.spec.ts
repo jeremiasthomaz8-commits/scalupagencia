@@ -1,28 +1,9 @@
-import { test, expect, type Page } from '@playwright/test'
+import { test, expect } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
   // Guard against any accidental contact with the live CRM during tests.
   await page.route('https://script.google.com/**', (route) => route.abort())
 })
-
-async function operation(page: Page) {
-  await page.getByLabel('Faturamento médio mensal', { exact: true }).selectOption({ index: 1 })
-  await page
-    .getByLabel('Investimento mensal em marketing e mídia', { exact: true })
-    .selectOption({ index: 2 })
-  await page.getByLabel('Principal desafio', { exact: true }).selectOption({ index: 2 })
-  await page.getByRole('button', { name: 'Continuar', exact: true }).click()
-}
-async function contact(page: Page) {
-  await page.getByLabel('Nome', { exact: true }).fill('Teste local')
-  await page.getByLabel('WhatsApp com DDD', { exact: true }).fill('(11) 99999-9999')
-  await page.getByLabel('E-mail', { exact: true }).fill('teste@example.com')
-  await page.getByRole('button', { name: 'Continuar', exact: true }).click()
-}
-async function finish(page: Page) {
-  await page.getByLabel('Qual é o seu site ou Instagram?').fill('@teste_local')
-  await page.getByRole('checkbox').check()
-}
 
 test('responsive layout, real logos, navigation targets and console', async ({ page }) => {
   const errors: string[] = []
@@ -78,99 +59,10 @@ test('mobile menu traps focus, closes on Escape and follows links', async ({ pag
   await trigger.click()
   await page
     .getByRole('navigation', { name: 'Navegação móvel' })
-    .getByRole('link', { name: 'Contato' })
+    .getByRole('link', { name: 'Metodologia', exact: true })
     .click()
   await expect(page.getByRole('dialog')).toHaveCount(0)
-  await expect(page).toHaveURL(/#diagnostico$/)
-})
-
-test('form validates, preserves answers, confirms only acknowledged delivery and prevents duplicates', async ({
-  page,
-}) => {
-  let submissions = 0
-  await page.route('**/__test/lead', async (route) => {
-    submissions++
-    const data = new URLSearchParams(route.request().postData()!)
-    expect(data.get('nome')).toBe('Teste local')
-    expect(data.get('website_hp')).toBe('')
-    expect(data.get('consent')).toBe('on')
-    await new Promise((resolve) => setTimeout(resolve, 350))
-    await route.fulfill({ status: 200, json: { ok: true } })
-  })
-  await page.goto('/#diagnostico')
-  await page.getByRole('button', { name: 'Continuar', exact: true }).click()
-  await expect(page.locator('#faturamento')).toBeFocused()
-  await expect(page.locator('[aria-invalid="true"]')).toHaveCount(3)
-  await operation(page)
-  await page.getByRole('button', { name: 'Continuar', exact: true }).click()
-  await expect(page.locator('#whats-error')).toBeVisible()
-  await expect(page.locator('#email-error')).toBeVisible()
-  await contact(page)
-  await page.getByRole('button', { name: 'Voltar' }).click()
-  await expect(page.locator('#nome')).toHaveValue('Teste local')
-  await page.getByRole('button', { name: 'Continuar', exact: true }).click()
-  await page.getByRole('button', { name: 'Quero falar com a ScalUp' }).click()
-  await expect(page.locator('#consent-error')).toBeVisible()
-  await finish(page)
-  await page.getByRole('button', { name: 'Quero falar com a ScalUp' }).click()
-  await expect(page.getByRole('button', { name: 'Enviando…' })).toBeDisabled()
-  await page.locator('form').evaluate((el) => {
-    el.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
-  })
-  await expect(page.getByRole('heading', { name: 'Recebemos suas informações.' })).toBeVisible()
-  expect(submissions).toBe(1)
-})
-
-for (const kind of ['http', 'malformed', 'rejected', 'network'])
-  test(`no false success for ${kind} failure`, async ({ page }) => {
-    await page.route('**/__test/lead', (route) =>
-      kind === 'network'
-        ? route.abort()
-        : route.fulfill(
-            kind === 'http'
-              ? { status: 500, json: { ok: false } }
-              : kind === 'malformed'
-                ? { status: 200, contentType: 'text/html', body: 'not JSON' }
-                : { status: 200, json: { ok: false } },
-          ),
-    )
-    await page.goto('/#diagnostico')
-    await operation(page)
-    await contact(page)
-    await finish(page)
-    await page.getByRole('button', { name: 'Quero falar com a ScalUp' }).click()
-    await expect(page.getByRole('alert')).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Recebemos suas informações.' })).toHaveCount(0)
-    await expect(page.locator('#site')).toHaveValue('@teste_local')
-  })
-
-test('unconfigured receiver does not send or fabricate success', async ({ page }) => {
-  let posts = 0
-  page.on('request', (request) => {
-    if (request.method() === 'POST') posts++
-  })
-  await page.goto('http://127.0.0.1:5182/#diagnostico')
-  await operation(page)
-  await contact(page)
-  await finish(page)
-  await page.getByRole('button', { name: 'Quero falar com a ScalUp' }).click()
-  await expect(page.getByRole('alert')).toContainText('ainda não está disponível')
-  expect(posts).toBe(0)
-})
-
-test('honeypot blocks transmission', async ({ page }) => {
-  let posts = 0
-  page.on('request', (request) => {
-    if (request.method() === 'POST') posts++
-  })
-  await page.goto('/#diagnostico')
-  await page.locator('[name="website_hp"]').fill('spam', { force: true })
-  await operation(page)
-  await contact(page)
-  await finish(page)
-  await page.getByRole('button', { name: 'Quero falar com a ScalUp' }).click()
-  await expect(page.getByRole('alert')).toBeVisible()
-  expect(posts).toBe(0)
+  await expect(page).toHaveURL(/#metodologia$/)
 })
 
 test('four diagnostic stages and reduced motion keep all content readable', async ({ page }) => {
@@ -186,39 +78,6 @@ test('four diagnostic stages and reduced motion keep all content readable', asyn
   await expect(page.locator('h1')).toHaveCSS('opacity', '1')
   await expect(page.locator('.reveal-ready').first()).toHaveCount(0)
   await expect(page.locator('.logo-group').first()).toHaveCSS('display', 'grid')
-})
-
-test('language switching preserves form progress, answers and translates existing errors', async ({
-  page,
-}) => {
-  await page.goto('/#diagnostico')
-  await operation(page)
-  await page.locator('#nome').fill('Teste local')
-  await page.getByRole('button', { name: 'Continuar', exact: true }).click()
-  await expect(page.locator('#email-error')).toContainText('Informe um e-mail')
-  await page.getByRole('button', { name: 'English', exact: true }).click()
-  await expect(page.locator('html')).toHaveAttribute('lang', 'en')
-  await expect(page.locator('#nome')).toHaveValue('Teste local')
-  await expect(page.locator('#email-error')).toContainText('Enter a valid email')
-  await expect(page.getByRole('heading', { name: 'How can we reach you?' })).toBeVisible()
-  await page.getByRole('button', { name: 'Back', exact: true }).click()
-  await expect(page.locator('#faturamento')).toHaveValue('Até R$ 50 mil/mês')
-  await expect(page.locator('#faturamento option:checked')).toHaveText('Up to R$ 50,000/month')
-  await page.getByRole('button', { name: 'Continue', exact: true }).click()
-  await page.locator('#whats').fill('+55 (11) 99999-9999')
-  await page.locator('#email').fill('test@example.com')
-  await page.getByRole('button', { name: 'Continue', exact: true }).click()
-  await expect(page.locator('.form-summary')).toContainText('Up to R$ 50,000/month')
-  await expect(page.locator('.form-summary')).not.toContainText('Até R$')
-  await page.locator('#site').fill('@local_test')
-  await page.getByRole('checkbox').check()
-  await page.route('**/__test/lead', (route) => route.fulfill({ status: 200, json: { ok: true } }))
-  await page.getByRole('button', { name: 'Talk to ScalUp', exact: true }).click()
-  await expect(
-    page.getByRole('heading', { name: 'We’ve received your information.' }),
-  ).toBeVisible()
-  await page.getByRole('button', { name: 'Português', exact: true }).click()
-  await expect(page.getByRole('heading', { name: 'Recebemos suas informações.' })).toBeVisible()
 })
 
 test('language preference survives reload and metadata follows the selected language', async ({
@@ -261,7 +120,6 @@ for (const width of [390, 768, 1024, 1440]) {
         '#metodo',
         '#resultados',
         '#diferencial',
-        '#diagnostico',
         '#para-quem',
         '.final-cta',
         'footer',
@@ -271,6 +129,11 @@ for (const width of [390, 768, 1024, 1440]) {
           true,
         )
         await expect(page.locator(section)).toBeVisible()
+      }
+      await expect(page.locator('form, #diagnostico')).toHaveCount(0)
+      await expect(page.locator('.header-cta')).toHaveAttribute('href', 'https://wa.me/5511918215500')
+      for (const cta of await page.locator('.shiny-button, .footer-main > div:nth-child(2) a:last-child').all()) {
+        await expect(cta).toHaveAttribute('href', 'https://wa.me/5511918215500')
       }
       await expect(page.locator('.pillar-card')).toHaveCount(6)
       await expect(page.locator('.process-step')).toHaveCount(4)
@@ -289,7 +152,7 @@ for (const width of [390, 768, 1024, 1440]) {
         await expect(reveal).toHaveClass(/revealed/)
       }
       if (language === 'pt') {
-        for (const id of ['problema', 'metodologia', 'solucoes', 'metodo', 'resultados', 'diferencial', 'diagnostico', 'para-quem']) {
+        for (const id of ['problema', 'metodologia', 'solucoes', 'metodo', 'resultados', 'diferencial', 'para-quem']) {
           await page.locator(`#${id}`).screenshot({ path: `research/redesign-review/pt-${width}-${id}.png`, animations: 'disabled', style: '.site-header, .skip-link { visibility: hidden !important; }' })
         }
         await page.locator('.final-cta').screenshot({ path: `research/redesign-review/pt-${width}-closing.png`, animations: 'disabled', style: '.site-header, .skip-link { visibility: hidden !important; }' })

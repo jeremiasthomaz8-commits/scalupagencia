@@ -283,7 +283,7 @@ export function ServicesSection() {
           ))}
         </div>
         <div className="section-action">
-          <ShinyButton href="#diagnostico">{t.ui.cta}</ShinyButton>
+          <ShinyButton href="https://wa.me/5511918215500">{t.ui.cta}</ShinyButton>
         </div>
       </div>
     </section>

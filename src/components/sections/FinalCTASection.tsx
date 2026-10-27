@@ -15,7 +15,7 @@ export function FinalCTASection() {
             </h2>
             <div className="closing-action">
               <p>{t.final.description}</p>
-              <ShinyButton href="#diagnostico">{t.ui.cta}</ShinyButton>
+              <ShinyButton href="https://wa.me/5511918215500">{t.ui.cta}</ShinyButton>
             </div>
           </div>
           <div className="closing-art" aria-hidden="true">

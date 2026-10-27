@@ -16,13 +16,6 @@ export default defineConfig({
       command: 'npm run dev -- --port 5181 --strictPort',
       url: 'http://127.0.0.1:5181',
       reuseExistingServer: false,
-      env: { VITE_LEAD_ENDPOINT: 'http://127.0.0.1:5181/__test/lead' },
-    },
-    {
-      command: 'npm run dev -- --port 5182 --strictPort',
-      url: 'http://127.0.0.1:5182',
-      reuseExistingServer: false,
-      env: { VITE_LEAD_ENDPOINT: '' },
     },
   ],
 })

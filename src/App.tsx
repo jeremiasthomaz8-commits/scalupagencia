@@ -10,7 +10,6 @@ import {
   AudienceSection,
 } from '@/components/sections/StrategySections'
 import { ProcessSection } from '@/components/sections/ProcessSection'
-import { DiagnosticFormSection } from '@/components/sections/DiagnosticFormSection'
 import { FinalCTASection } from '@/components/sections/FinalCTASection'
 import { LanguageProvider } from '@/i18n/LanguageProvider'
 import { useLanguage } from '@/i18n/context'
@@ -30,7 +29,6 @@ function Page() {
         <ProcessSection />
         <ProofSection />
         <GrowthSystemSection />
-        <DiagnosticFormSection />
         <AudienceSection />
         <FinalCTASection />
       </main>

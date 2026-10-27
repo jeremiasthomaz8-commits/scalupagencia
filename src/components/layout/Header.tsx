@@ -8,7 +8,7 @@ const destinations = [
   '#solucoes',
   '#resultados',
   '#para-quem',
-  '#diagnostico',
+  'https://wa.me/5511918215500',
 ]
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -45,7 +45,7 @@ export function Header() {
             EN
           </button>
         </div>
-        <a className="header-cta" href="#diagnostico">
+        <a className="header-cta" href="https://wa.me/5511918215500">
           {t.ui.talk}
           <ArrowUpRight size={17} />
         </a>

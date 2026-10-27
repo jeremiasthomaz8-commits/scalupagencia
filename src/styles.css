@@ -1370,9 +1370,6 @@ img {
   place-items: center;
   width: 160px;
   height: 94px;
-  background: #fff;
-  border: 1px solid #1e1c1d0c;
-  border-radius: 8px;
   padding: 22px;
 }
 .client-logo img {
@@ -1858,7 +1855,6 @@ img {
   margin-top: 38px;
   width: 68px;
   height: 76px;
-  opacity: 0.75;
 }
 .audience-intro {
   font-size: 17px;

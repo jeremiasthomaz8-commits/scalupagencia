@@ -17,7 +17,7 @@ export function Footer() {
             <h3>{t.footer.explore}</h3>
             <a href="#metodologia">{t.nav[1]}</a>
             <a href="#solucoes">{t.nav[2]}</a>
-            <a href="#diagnostico">{t.ui.cta}</a>
+            <a href="https://wa.me/5511918215500">{t.ui.cta}</a>
           </div>
           <div>
             <h3>{t.footer.contact}</h3>

@@ -20,7 +20,7 @@ export function HeroSection() {
             </h1>
             <p className="hero-description">{t.hero.description}</p>
             <div className="hero-actions">
-              <ShinyButton href="#diagnostico">{t.ui.cta}</ShinyButton>
+              <ShinyButton href="https://wa.me/5511918215500">{t.ui.cta}</ShinyButton>
               <a className="secondary-button" href="#metodologia">
                 {t.ui.learn}
                 <ArrowDown size={17} />
