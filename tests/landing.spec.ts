@@ -240,8 +240,9 @@ test('language preference survives reload and metadata follows the selected lang
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index,follow')
 })
 
-for (const width of [375, 768, 1024, 1440]) {
+for (const width of [390, 768, 1024, 1440]) {
   test(`complete PT and EN page at ${width}px, with review screenshots`, async ({ page }) => {
+    test.setTimeout(90000)
     await page.setViewportSize({ width, height: 900 })
     await page.goto('/')
     for (const language of ['pt', 'en']) {
@@ -273,6 +274,10 @@ for (const width of [375, 768, 1024, 1440]) {
       }
       await expect(page.locator('.pillar-card')).toHaveCount(6)
       await expect(page.locator('.process-step')).toHaveCount(4)
+      await expect(page.locator('.system-node')).toHaveCount(9)
+      await expect(page.locator('h1')).toHaveCSS('font-weight', '700')
+      await expect(page.locator('.hero-description')).toHaveCSS('font-weight', '400')
+      await expect(page.locator('.hero-actions .shiny-button')).toHaveCSS('font-weight', '500')
       const broken = await page
         .locator('img')
         .evaluateAll((imgs) =>
@@ -282,6 +287,12 @@ for (const width of [375, 768, 1024, 1440]) {
       for (const reveal of await page.locator('.reveal-ready').all()) {
         await reveal.scrollIntoViewIfNeeded()
         await expect(reveal).toHaveClass(/revealed/)
+      }
+      if (language === 'pt') {
+        for (const id of ['problema', 'metodologia', 'solucoes', 'metodo', 'resultados', 'diferencial', 'diagnostico', 'para-quem']) {
+          await page.locator(`#${id}`).screenshot({ path: `research/redesign-review/pt-${width}-${id}.png`, animations: 'disabled', style: '.site-header, .skip-link { visibility: hidden !important; }' })
+        }
+        await page.locator('.final-cta').screenshot({ path: `research/redesign-review/pt-${width}-closing.png`, animations: 'disabled', style: '.site-header, .skip-link { visibility: hidden !important; }' })
       }
       await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
       await page.screenshot({

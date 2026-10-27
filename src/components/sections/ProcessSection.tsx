@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowDownRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/i18n/context'
-import { Reveal } from '@/components/ui/reveal'
+import { Reveal, TextReveal } from '@/components/ui/reveal'
 export function ProcessSection() {
   const { t } = useLanguage()
   const c = t.process
@@ -22,16 +22,16 @@ export function ProcessSection() {
   return (
     <section className="section process" id="metodo">
       <div className="wrap">
-        <Reveal className="process-heading">
+        <Reveal className="process-heading" variant="text">
           <div className="section-heading">
-            <h2>{c.title}</h2>
+            <TextReveal text={c.title} />
           </div>
           <p>{c.description}</p>
         </Reveal>
         <ol className="process-steps">
           {c.items.map(([title, copy], i) => (
             <li
-              className={`process-step ${active === i ? 'active' : ''}`}
+              className={`process-step ${active === i ? 'active' : ''} ${active >= i ? 'passed' : ''}`}
               key={i}
               id={`etapa-${i + 1}`}
               data-index={i}
@@ -41,10 +41,19 @@ export function ProcessSection() {
             >
               <div className="step-top">
                 <span>0{i + 1}</span>
-                <ArrowDownRight size={22} aria-hidden="true" />
+                <div className="step-meter" aria-hidden="true">
+                  {[0, 1, 2, 3].map((n) => (
+                    <i className={n <= i ? 'lit' : ''} key={n} />
+                  ))}
+                </div>
               </div>
               <h3>{title}</h3>
               <p>{copy}</p>
+              {i < 3 && (
+                <span className="step-connector">
+                  <ArrowRight size={18} aria-hidden="true" />
+                </span>
+              )}
             </li>
           ))}
         </ol>

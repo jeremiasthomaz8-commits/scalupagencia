@@ -142,11 +142,11 @@ export function DiagnosticFormSection() {
                 {c.steps.map((label, i) => (
                   <span
                     key={i}
-                    className={i === step ? 'active' : ''}
+                    className={i === step ? 'active' : i < step ? 'complete' : ''}
                     aria-current={i === step ? 'step' : undefined}
                   >
-                    {i < step ? <Check size={12} /> : <span>{i + 1}.</span>}
-                    {label}
+                    <span className="step-number">{i < step ? <Check size={14} /> : i + 1}</span>
+                    <span>{label}</span>
                   </span>
                 ))}
               </div>
@@ -171,7 +171,7 @@ export function DiagnosticFormSection() {
                     />
                   </label>
                 </div>
-                <fieldset disabled={status === 'sending'} className="form-fields">
+                <fieldset key={step} disabled={status === 'sending'} className="form-fields">
                   <legend className="sr-only">{c.steps[step]}</legend>
                   <h3 ref={title} tabIndex={-1}>
                     {c.headings[step]}

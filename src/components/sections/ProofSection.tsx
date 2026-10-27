@@ -2,17 +2,18 @@ import { useState } from 'react'
 import { Pause, Play } from 'lucide-react'
 import { clients } from '@/content'
 import { useLanguage } from '@/i18n/context'
-import { Reveal } from '@/components/ui/reveal'
+import { Reveal, TextReveal } from '@/components/ui/reveal'
 export function ProofSection() {
   const [paused, setPaused] = useState(false)
   const { t } = useLanguage()
   return (
     <section id="resultados" className="section proof">
       <div className="wrap">
-        <div className="section-heading centered">
-          <h2>{t.proof.title}</h2>
-        </div>
-        <Reveal className="metrics">
+        <Reveal className="proof-heading" variant="text">
+          <TextReveal text={t.proof.title} />
+          <img src="/brand/logo-charcoal.svg" alt="ScalUp" width="170" height="47" />
+        </Reveal>
+        <Reveal className="metrics" variant="diagram">
           {t.proof.metrics.map(([number, label]) => (
             <div key={label}>
               <strong>{number}</strong>
