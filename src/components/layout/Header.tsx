@@ -16,7 +16,7 @@ export function Header() {
   return (
     <header className="site-header">
       <a href="#inicio" className="brand" aria-label={t.ui.home}>
-        <img src="/brand/logo-primary.svg" width="150" height="41" alt="ScalUp" />
+        <img src="/brand/logo-primary.svg" width="150" height="41" alt="Scalup" />
       </a>
       <nav className="desktop-nav" aria-label={t.ui.nav}>
         {t.nav.slice(1, 5).map((label, i) => (
@@ -58,7 +58,7 @@ export function Header() {
             <Dialog.Content className="drawer">
               <div className="drawer-top">
                 <Dialog.Title>
-                  <img src="/brand/logo-primary.svg" width="140" height="39" alt="ScalUp" />
+                  <img src="/brand/logo-primary.svg" width="140" height="39" alt="Scalup" />
                 </Dialog.Title>
                 <Dialog.Close aria-label={t.ui.close}>
                   <X />

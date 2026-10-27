@@ -2,16 +2,16 @@ import { services, processSteps, audience, formOptions } from '@/content'
 
 export const pt = {
   meta: {
-    title: 'ScalUp Agência | Marketing, aquisição e vendas',
+    title: 'Scalup Agência | Marketing, aquisição e vendas',
     description:
-      'Estratégia, mídia paga, dados e comercial conectados para transformar anúncios em oportunidades reais de venda. Conheça a ScalUp.',
+      'Estratégia, mídia paga, dados e comercial conectados para transformar anúncios em oportunidades reais de venda. Conheça a Scalup.',
   },
   nav: ['Início', 'Metodologia', 'Soluções', 'Resultados', 'Para quem é', 'Contato'],
   ui: {
     cta: 'Quero meu diagnóstico',
     talk: 'Vamos conversar',
     skip: 'Pular para o conteúdo',
-    home: 'ScalUp — início',
+    home: 'Scalup — início',
     menu: 'Abrir menu',
     close: 'Fechar menu',
     nav: 'Navegação principal',
@@ -26,7 +26,7 @@ export const pt = {
   },
   hero: {
     label: 'Marketing conectado a vendas',
-    portraitAlt: 'Retrato profissional com a marca ScalUp na camisa',
+    portraitAlt: 'Retrato profissional com a marca Scalup na camisa',
     lines: ['Transformamos anúncios', 'em oportunidades', 'reais de venda.'],
     description:
       'O papel do tráfego pago é gerar demanda qualificada. Por isso, implementamos o que chamamos de funil de qualificação.',
@@ -69,7 +69,7 @@ export const pt = {
   },
   solution: {
     label: 'A solução',
-    title: 'É aqui que entra a ScalUp.',
+    title: 'É aqui que entra a Scalup.',
     blocks: [
       [
         'O que fazemos',
@@ -116,13 +116,13 @@ export const pt = {
   },
   proof: {
     label: 'Experiência em operação',
-    title: 'Alguns números da operação ScalUp.',
+    title: 'Alguns números da operação Scalup.',
     metrics: [
       ['+R$ 10 mi', 'em mídia paga gerenciada'],
       ['50+', 'negócios atendidos em todo o Brasil'],
       ['6 anos', 'escalando negócios com estratégia'],
     ],
-    clients: 'Empresas que já confiaram na ScalUp',
+    clients: 'Empresas que já confiaram na Scalup',
   },
   difference: {
     label: 'Além do Gerenciador de Anúncios',
@@ -145,7 +145,7 @@ export const pt = {
   audience: {
     label: 'Para quem é',
     title: 'Para empresas que querem crescer com mais clareza.',
-    intro: 'A ScalUp é para empresas que:',
+    intro: 'A Scalup é para empresas que:',
     items: audience,
     conclusion:
       'Não é sobre o tamanho da empresa. É sobre o momento em que ela está e a ambição de onde quer chegar.',
@@ -205,7 +205,7 @@ export const pt = {
       'Ao enviar, você concorda em receber nosso contato para tratarmos sobre sua solicitação.',
     back: 'Voltar',
     next: 'Continuar',
-    submit: 'Quero falar com a ScalUp',
+    submit: 'Quero falar com a Scalup',
     sending: 'Enviando…',
     footnote: 'Informações para entender o seu negócio.',
     success: 'Recebemos suas informações.',
@@ -229,16 +229,16 @@ export const pt = {
 export type Messages = typeof pt
 export const en: Messages = {
   meta: {
-    title: 'ScalUp Agency | Marketing, acquisition and sales',
+    title: 'Scalup Agency | Marketing, acquisition and sales',
     description:
-      'Strategy, paid media, data and sales working together to turn advertising into real sales opportunities. Meet ScalUp.',
+      'Strategy, paid media, data and sales working together to turn advertising into real sales opportunities. Meet Scalup.',
   },
   nav: ['Home', 'Methodology', 'Solutions', 'Results', 'Who it is for', 'Contact'],
   ui: {
     cta: 'Get my assessment',
     talk: 'Let’s talk',
     skip: 'Skip to content',
-    home: 'ScalUp — home',
+    home: 'Scalup — home',
     menu: 'Open menu',
     close: 'Close menu',
     nav: 'Main navigation',
@@ -253,7 +253,7 @@ export const en: Messages = {
   },
   hero: {
     label: 'Marketing connected to sales',
-    portraitAlt: 'Professional portrait wearing a ScalUp branded shirt',
+    portraitAlt: 'Professional portrait wearing a Scalup branded shirt',
     lines: ['We turn advertising', 'into real sales', 'opportunities.'],
     description:
       'Paid media should generate qualified demand. That is why we build what we call a qualification funnel.',
@@ -296,7 +296,7 @@ export const en: Messages = {
   },
   solution: {
     label: 'The solution',
-    title: 'This is where ScalUp comes in.',
+    title: 'This is where Scalup comes in.',
     blocks: [
       [
         'What we do',
@@ -389,13 +389,13 @@ export const en: Messages = {
   },
   proof: {
     label: 'Experience in action',
-    title: 'A few numbers behind ScalUp.',
+    title: 'A few numbers behind Scalup.',
     metrics: [
       ['R$ 10M+', 'in paid media managed'],
       ['50+', 'businesses served across Brazil'],
       ['6 years', 'scaling businesses with strategy'],
     ],
-    clients: 'Companies that have trusted ScalUp',
+    clients: 'Companies that have trusted Scalup',
   },
   difference: {
     label: 'Beyond Ads Manager',
@@ -418,7 +418,7 @@ export const en: Messages = {
   audience: {
     label: 'Who it is for',
     title: 'For companies that want to grow with greater clarity.',
-    intro: 'ScalUp is for companies that:',
+    intro: 'Scalup is for companies that:',
     items: [
       'Already have a sales operation or sales process.',
       'Already invest in acquisition or are ready to start.',
@@ -513,7 +513,7 @@ export const en: Messages = {
     consent: 'By submitting, you agree to be contacted about your request.',
     back: 'Back',
     next: 'Continue',
-    submit: 'Talk to ScalUp',
+    submit: 'Talk to Scalup',
     sending: 'Sending…',
     footnote: 'Information to understand your business.',
     success: 'We’ve received your information.',

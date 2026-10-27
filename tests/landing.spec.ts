@@ -9,7 +9,7 @@ test('responsive layout, real logos, navigation targets and console', async ({ p
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
   await page.goto('/')
-  await expect(page).toHaveTitle(/ScalUp Agência/)
+  await expect(page).toHaveTitle(/Scalup Agência/)
   for (const width of [375, 390, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 })
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
@@ -25,19 +25,17 @@ test('responsive layout, real logos, navigation targets and console', async ({ p
         .map((a) => a.outerHTML),
     )
   expect(broken).toEqual([])
-  await page.locator('.marquee').scrollIntoViewIfNeeded()
-  await expect(page.locator('.logo-group').first().locator('img')).toHaveCount(16)
+  await page.locator('.client-wall').scrollIntoViewIfNeeded()
+  await expect(page.locator('.client-wall').first().locator('img')).toHaveCount(16)
   await expect
     .poll(() =>
       page
-        .locator('.logo-group')
+        .locator('.client-wall')
         .first()
         .locator('img')
         .evaluateAll((imgs) => imgs.every((img) => (img as HTMLImageElement).naturalWidth > 0)),
     )
     .toBe(true)
-  await page.getByRole('button', { name: 'Pausar logos' }).click()
-  await expect(page.locator('.marquee-track')).toHaveCSS('animation-play-state', 'paused')
   expect(errors).toEqual([])
 })
 
@@ -119,10 +117,9 @@ test('four diagnostic stages and reduced motion keep all content readable', asyn
   await expect(page.locator('.process-step')).toHaveCount(4)
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.reload()
-  await expect(page.locator('.marquee-track')).toHaveCSS('animation-name', 'none')
   await expect(page.locator('h1')).toHaveCSS('opacity', '1')
   await expect(page.locator('.reveal-ready').first()).toHaveCount(0)
-  await expect(page.locator('.logo-group').first()).toHaveCSS('display', 'grid')
+  await expect(page.locator('.client-wall').first()).toHaveCSS('display', 'grid')
 })
 
 test('language preference survives reload and metadata follows the selected language', async ({
@@ -132,7 +129,7 @@ test('language preference survives reload and metadata follows the selected lang
   await page.getByRole('button', { name: 'English', exact: true }).click()
   await page.reload()
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
-  await expect(page).toHaveTitle('ScalUp Agency | Marketing, acquisition and sales')
+  await expect(page).toHaveTitle('Scalup Agency | Marketing, acquisition and sales')
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     'content',
     /real sales opportunities/,
@@ -164,6 +161,7 @@ for (const width of [390, 768, 1024, 1440]) {
         '#solucoes',
         '#metodo',
         '#resultados',
+        '#certificacoes',
         '#diferencial',
         '#para-quem',
         '.final-cta',
@@ -176,10 +174,19 @@ for (const width of [390, 768, 1024, 1440]) {
         await expect(page.locator(section)).toBeVisible()
       }
       await expect(page.locator('form, #diagnostico')).toHaveCount(0)
-      await expect(page.locator('.header-cta')).toHaveAttribute('href', 'https://wa.me/5511918215500')
-      for (const cta of await page.locator('.shiny-button, .footer-main > div:nth-child(2) a:last-child').all()) {
+      await expect(page.locator('.header-cta')).toHaveAttribute(
+        'href',
+        'https://wa.me/5511918215500',
+      )
+      for (const cta of await page
+        .locator('.shiny-button, .footer-main > div:nth-child(2) a:last-child')
+        .all()) {
         await expect(cta).toHaveAttribute('href', 'https://wa.me/5511918215500')
       }
+      await expect(page.locator('.certification-card')).toHaveCount(4)
+      await expect(page.locator('.community-panel')).toContainText('Subido Pro')
+      await expect(page.locator('.community-panel')).toContainText('Pedro Sobral')
+      await expect(page.locator('body')).not.toContainText('ScalUp')
       await expect(page.locator('.pillar-card')).toHaveCount(6)
       await expect(page.locator('.process-step')).toHaveCount(4)
       await expect(page.locator('.system-node')).toHaveCount(9)
@@ -197,10 +204,31 @@ for (const width of [390, 768, 1024, 1440]) {
         await expect(reveal).toHaveClass(/revealed/)
       }
       if (language === 'pt') {
-        for (const id of ['problema', 'metodologia', 'solucoes', 'metodo', 'resultados', 'diferencial', 'para-quem']) {
-          await page.locator(`#${id}`).screenshot({ path: `research/redesign-review/pt-${width}-${id}.png`, animations: 'disabled', style: '.site-header, .skip-link { visibility: hidden !important; }' })
+        for (const id of [
+          'problema',
+          'metodologia',
+          'solucoes',
+          'metodo',
+          'resultados',
+          'certificacoes',
+          'diferencial',
+          'para-quem',
+        ]) {
+          await page
+            .locator(`#${id}`)
+            .screenshot({
+              path: `research/redesign-review/pt-${width}-${id}.png`,
+              animations: 'disabled',
+              style: '.site-header, .skip-link { visibility: hidden !important; }',
+            })
         }
-        await page.locator('.final-cta').screenshot({ path: `research/redesign-review/pt-${width}-closing.png`, animations: 'disabled', style: '.site-header, .skip-link { visibility: hidden !important; }' })
+        await page
+          .locator('.final-cta')
+          .screenshot({
+            path: `research/redesign-review/pt-${width}-closing.png`,
+            animations: 'disabled',
+            style: '.site-header, .skip-link { visibility: hidden !important; }',
+          })
       }
       await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
       await page.screenshot({

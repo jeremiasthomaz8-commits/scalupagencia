@@ -9,7 +9,7 @@ export function Footer() {
         <div className="footer-main">
           <div className="footer-brand">
             <a href="#inicio">
-              <img src="/brand/logo-primary.svg" width="195" height="54" alt="ScalUp" />
+              <img src="/brand/logo-primary.svg" width="195" height="54" alt="Scalup" />
             </a>
             <p>{t.footer.description}</p>
           </div>
