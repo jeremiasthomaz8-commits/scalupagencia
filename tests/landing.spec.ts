@@ -41,6 +41,51 @@ test('responsive layout, real logos, navigation targets and console', async ({ p
   expect(errors).toEqual([])
 })
 
+test('mobile hero keeps both buttons aligned and the portrait below the copy', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/')
+  for (const language of ['Português', 'English']) {
+    await page.getByRole('button', { name: language, exact: true }).click()
+    for (const width of [320, 360, 375, 390, 414, 430, 480, 540, 580]) {
+      await page.setViewportSize({ width, height: 900 })
+      await page.evaluate(() => document.fonts.ready)
+      const boxes = await page.evaluate(() => {
+        const box = (selector: string) => {
+          const r = document.querySelector(selector)!.getBoundingClientRect()
+          return { top: r.top, bottom: r.bottom, left: r.left, width: r.width, height: r.height }
+        }
+        return {
+          copy: box('.hero-copy'),
+          stage: box('.hero-stage'),
+          portrait: box('.hero-portrait img'),
+          actions: box('.hero-actions'),
+          primary: box('.hero-actions .shiny-button'),
+          secondary: box('.hero-actions .secondary-button'),
+          overflow: document.documentElement.scrollWidth > innerWidth,
+        }
+      })
+      expect(boxes.overflow, `${language} at ${width}px`).toBe(false)
+      expect(boxes.stage.top - boxes.copy.bottom).toBeGreaterThanOrEqual(31)
+      expect(boxes.portrait.top).toBeGreaterThanOrEqual(boxes.stage.top)
+      expect(boxes.portrait.bottom).toBeLessThanOrEqual(boxes.stage.bottom + 1)
+      expect(boxes.secondary.top - boxes.primary.bottom).toBeGreaterThanOrEqual(11)
+      for (const button of [boxes.primary, boxes.secondary]) {
+        expect(button.height).toBeGreaterThanOrEqual(52)
+        expect(Math.abs(button.width - boxes.actions.width)).toBeLessThan(1)
+        expect(Math.abs(button.left - boxes.actions.left)).toBeLessThan(1)
+      }
+      if (language === 'Português' && [390, 430, 580].includes(width)) {
+        await page.setViewportSize({ width, height: 1500 })
+        await page.locator('#inicio').screenshot({
+          path: `research/redesign-review/mobile-hero-${width}.png`,
+          animations: 'disabled',
+          style: '.site-header, .skip-link { visibility: hidden !important; }',
+        })
+      }
+    }
+  }
+})
+
 test('mobile menu traps focus, closes on Escape and follows links', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
