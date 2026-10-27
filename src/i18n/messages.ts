@@ -1,0 +1,535 @@
+import { services, processSteps, audience, formOptions } from '@/content'
+
+export const pt = {
+  meta: {
+    title: 'ScalUp Agência | Marketing, aquisição e vendas',
+    description:
+      'Estratégia, mídia paga, dados e comercial conectados para transformar anúncios em oportunidades reais de venda. Conheça a ScalUp.',
+  },
+  nav: ['Início', 'Metodologia', 'Soluções', 'Resultados', 'Para quem é', 'Contato'],
+  ui: {
+    cta: 'Quero meu diagnóstico',
+    talk: 'Vamos conversar',
+    skip: 'Pular para o conteúdo',
+    home: 'ScalUp — início',
+    menu: 'Abrir menu',
+    close: 'Fechar menu',
+    nav: 'Navegação principal',
+    mobileNav: 'Navegação móvel',
+    navigate: 'Navegue pelas seções da agência.',
+    language: 'Idioma',
+    diagnosis: 'Diagnóstico',
+    learn: 'Conheça o método',
+    pause: 'Pausar logos',
+    play: 'Reproduzir logos',
+    backTop: 'Voltar ao início',
+  },
+  hero: {
+    label: 'Marketing conectado a vendas',
+    portraitAlt: 'Retrato profissional com a marca ScalUp na camisa',
+    lines: ['Transformamos anúncios', 'em oportunidades', 'reais de venda.'],
+    description:
+      'O papel do tráfego pago é gerar demanda qualificada. Por isso, implementamos o que chamamos de funil de qualificação.',
+    note: 'Diagnóstico inicial da sua operação de marketing e vendas.',
+    flow: ['Demanda', 'Qualificação', 'Oportunidades'],
+    flowNotes: ['Atrair as pessoas certas', 'Conectar interesse e perfil', 'Chegar ao comercial'],
+    caption: 'Da atenção à intenção. Do marketing à venda.',
+    trust: '50+ negócios atendidos em todo o Brasil',
+  },
+  problem: {
+    label: 'O problema',
+    title: 'Mais leads não resolvem tudo.',
+    subtitle:
+      'Sua empresa não precisa de mais volume de leads. Precisa de um funil de qualificação.',
+    description:
+      'O algoritmo vai buscar o evento que você marcou como sucesso. Se o evento é formulário enviado, ele vai caçar quem preenche formulário. E existe muita gente excelente em preencher formulário que nunca vai comprar de você.',
+    left: 'Volume sem direção',
+    right: 'Aquisição com estratégia',
+    rows: [
+      [
+        'Time comercial saturado',
+        'Comercial sobrecarregado tentando contato com curiosos enquanto o lead no ICP esfria no pipeline.',
+        'Qualificação antes do comercial',
+        'Conectar aquisição, perfil de cliente e processo de vendas.',
+      ],
+      [
+        'Algoritmo otimizando errado',
+        'Sem funil de qualificação, as campanhas otimizam para trazer cadastros baratos, e não clientes dispostos a comprar.',
+        'Dados que orientam a aquisição',
+        'Mensuração e qualificação para apoiar decisões sobre as campanhas.',
+      ],
+      [
+        'Taxa de conversão ruim',
+        'Sem leads qualificados, automaticamente a taxa de conversão despenca.',
+        'Oportunidades no centro',
+        'Olhar para o caminho completo, da primeira interação até a venda.',
+      ],
+    ],
+    conclusion: 'Volume de lead sem qualificação é queimar dinheiro.',
+  },
+  solution: {
+    label: 'A solução',
+    title: 'É aqui que entra a ScalUp.',
+    blocks: [
+      [
+        'O que fazemos',
+        'Estruturamos e otimizamos a operação de aquisição da sua empresa olhando para o processo completo, desde o posicionamento até o comercial.',
+      ],
+      [
+        'Como fazemos',
+        'Analisamos onde estão os gargalos, identificamos as oportunidades e construímos um planejamento estratégico alinhado aos objetivos e metas do negócio.',
+      ],
+    ],
+    lead: 'Em vez de perguntar “quantos leads geramos esta semana?”, nós queremos saber:',
+    question: 'Quantas oportunidades de fato chegaram até o comercial?',
+    flow: ['Posicionamento', 'Aquisição', 'Conversão', 'Qualificação', 'Vendas'],
+  },
+  pillars: {
+    label: 'Seis pilares. Uma operação.',
+    title: 'Crescimento precisa de mais do que mídia paga.',
+    description: 'Estratégia e execução conectadas em cada ponto da jornada.',
+    items: services,
+    visuals: [
+      'Atrair',
+      'Converter',
+      'Testar. Aprender. Evoluir.',
+      'Medir para decidir',
+      'Conectar para avançar',
+      'Da estratégia à venda',
+    ],
+    tags: [
+      ['Público', 'Demanda'],
+      ['Atenção', 'Oportunidade'],
+      ['Hipótese', 'Criativo', 'Aprendizado'],
+      ['Tracking', 'Dados', 'Decisão'],
+      ['Marketing', 'CRM', 'Comercial'],
+      ['Diagnóstico', 'Direção', 'Execução'],
+    ],
+  },
+  process: {
+    label: 'Como funciona',
+    title: 'Primeiro entendemos. Depois estruturamos.',
+    description:
+      'Não colocamos todas as empresas no mesmo pacote. Cada operação tem um nível diferente de maturidade, estrutura e oportunidade. O processo começa entendendo:',
+    items: processSteps,
+    nav: 'Etapas do diagnóstico',
+  },
+  proof: {
+    label: 'Experiência em operação',
+    title: 'Alguns números da operação ScalUp.',
+    metrics: [
+      ['+R$ 10 mi', 'em mídia paga gerenciada'],
+      ['50+', 'negócios atendidos em todo o Brasil'],
+      ['6 anos', 'escalando negócios com estratégia'],
+    ],
+    clients: 'Empresas que já confiaram na ScalUp',
+  },
+  difference: {
+    label: 'Além do Gerenciador de Anúncios',
+    title: 'Não somos mais uma agência pra cuidar do seu tráfego.',
+    description:
+      'Somos parceiros para estruturar uma operação de aquisição que faça sentido para o estágio atual da sua empresa. Isso significa olhar além do Gerenciador de Anúncios:',
+    flow: [
+      'Campanha',
+      'Oferta',
+      'Página',
+      'Criativo',
+      'Tracking',
+      'Dados',
+      'Automação',
+      'Funil Comercial',
+      'Vendas',
+    ],
+    conclusion: 'Quando o objetivo é crescer, otimizar uma campanha isoladamente não é suficiente.',
+  },
+  audience: {
+    label: 'Para quem é',
+    title: 'Para empresas que querem crescer com mais clareza.',
+    intro: 'A ScalUp é para empresas que:',
+    items: audience,
+    conclusion:
+      'Não é sobre o tamanho da empresa. É sobre o momento em que ela está e a ambição de onde quer chegar.',
+  },
+  final: {
+    title: 'Talvez você não precise investir mais.',
+    emphasis: 'Talvez precise investir melhor.',
+    description:
+      'Descubra os principais gargalos da sua operação de marketing e vendas, e as oportunidades que podem estar sendo deixadas de lado.',
+  },
+  footer: {
+    description:
+      'Estratégia, mídia, dados e vendas conectados para transformar investimento em marketing em crescimento real.',
+    contact: 'Contato',
+    explore: 'Explore',
+    location: 'Jundiaí, São Paulo, Brasil',
+    privacy: 'Política de Privacidade',
+    rights: 'Todos os direitos reservados.',
+  },
+  form: {
+    label: 'Seu próximo movimento',
+    title: 'Vamos entender sua operação.',
+    description:
+      'Preencha algumas informações sobre sua empresa. Nossa equipe vai analisar o cenário e entrar em contato para entender se podemos ajudar.',
+    note: 'Clareza para decidir. Direção para crescer.',
+    whatsapp: 'Prefere conversar pelo WhatsApp?',
+    openWhats: 'Abrir WhatsApp',
+    progress: 'Progresso do diagnóstico',
+    diagnosis: 'Diagnóstico da sua operação',
+    steps: ['Sua operação', 'Seus dados', 'Sua presença digital'],
+    headings: [
+      'Como está sua empresa hoje?',
+      'Como podemos falar com você?',
+      'Só mais um pouco de contexto.',
+    ],
+    fields: {
+      faturamento: 'Faturamento médio mensal',
+      invest: 'Investimento mensal em marketing e mídia',
+      dor: 'Principal desafio',
+      nome: 'Nome',
+      whats: 'WhatsApp com DDD',
+      email: 'E-mail',
+      site: 'Qual é o seu site ou Instagram?',
+    },
+    placeholders: {
+      nome: 'Seu nome',
+      whats: '(11) 91821-5500',
+      email: 'nome@empresa.com.br',
+      site: 'site.com.br ou @seuinstagram',
+    },
+    options: formOptions,
+    select: 'Selecione uma opção',
+    honeypot: 'Não preencha este campo',
+    review: 'Confira suas informações',
+    edit: 'Editar',
+    consent:
+      'Ao enviar, você concorda em receber nosso contato para tratarmos sobre sua solicitação.',
+    back: 'Voltar',
+    next: 'Continuar',
+    submit: 'Quero falar com a ScalUp',
+    sending: 'Enviando…',
+    footnote: 'Informações para entender o seu negócio.',
+    success: 'Recebemos suas informações.',
+    successNote: 'Nossa equipe vai analisar o cenário e entrar em contato.',
+    unavailable: 'O envio pelo formulário está temporariamente indisponível.',
+    errors: {
+      select: 'Selecione uma opção para continuar.',
+      required: 'Preencha este campo para continuar.',
+      phone: 'Informe um telefone válido com DDD, como (11) 91821-5500.',
+      email: 'Informe um e-mail válido, como nome@empresa.com.br.',
+      consent: 'Confirme que podemos entrar em contato sobre sua solicitação.',
+      unavailable:
+        'O formulário ainda não está disponível para envio. Solicite seu diagnóstico pelo WhatsApp.',
+      rejected:
+        'Não conseguimos confirmar o recebimento. Seus dados continuam aqui. Tente novamente ou fale com a gente pelo WhatsApp.',
+      spam: 'Não foi possível enviar. Recarregue a página e tente novamente.',
+    },
+  },
+}
+
+export type Messages = typeof pt
+export const en: Messages = {
+  meta: {
+    title: 'ScalUp Agency | Marketing, acquisition and sales',
+    description:
+      'Strategy, paid media, data and sales working together to turn advertising into real sales opportunities. Meet ScalUp.',
+  },
+  nav: ['Home', 'Methodology', 'Solutions', 'Results', 'Who it is for', 'Contact'],
+  ui: {
+    cta: 'Get my assessment',
+    talk: 'Let’s talk',
+    skip: 'Skip to content',
+    home: 'ScalUp — home',
+    menu: 'Open menu',
+    close: 'Close menu',
+    nav: 'Main navigation',
+    mobileNav: 'Mobile navigation',
+    navigate: 'Explore the agency’s sections.',
+    language: 'Language',
+    diagnosis: 'Assessment',
+    learn: 'Explore our approach',
+    pause: 'Pause logos',
+    play: 'Play logos',
+    backTop: 'Back to top',
+  },
+  hero: {
+    label: 'Marketing connected to sales',
+    portraitAlt: 'Professional portrait wearing a ScalUp branded shirt',
+    lines: ['We turn advertising', 'into real sales', 'opportunities.'],
+    description:
+      'Paid media should generate qualified demand. That is why we build what we call a qualification funnel.',
+    note: 'An initial assessment of your marketing and sales operation.',
+    flow: ['Demand', 'Qualification', 'Opportunities'],
+    flowNotes: ['Attract the right people', 'Match interest with fit', 'Reach your sales team'],
+    caption: 'From attention to intent. From marketing to sales.',
+    trust: '50+ businesses served across Brazil',
+  },
+  problem: {
+    label: 'The problem',
+    title: 'More leads won’t solve everything.',
+    subtitle:
+      'Your company doesn’t need a higher volume of leads. It needs a qualification funnel.',
+    description:
+      'The algorithm looks for the event you define as success. If that event is a submitted form, it will find people who fill out forms. And plenty of people are great at filling out forms but will never buy from you.',
+    left: 'Volume without direction',
+    right: 'Acquisition with strategy',
+    rows: [
+      [
+        'An overloaded sales team',
+        'Salespeople chase unqualified inquiries while leads that match your ideal customer profile go cold in the pipeline.',
+        'Qualification before sales',
+        'Connect acquisition, customer fit and the sales process.',
+      ],
+      [
+        'Optimizing for the wrong event',
+        'Without qualification, campaigns optimize for inexpensive sign-ups instead of customers willing to buy.',
+        'Data that guides acquisition',
+        'Measurement and qualification that inform campaign decisions.',
+      ],
+      [
+        'Poor conversion rates',
+        'Without qualified leads, conversion rates drop.',
+        'Opportunities at the center',
+        'Look at the entire journey, from the first interaction to the sale.',
+      ],
+    ],
+    conclusion: 'Lead volume without qualification burns through your budget.',
+  },
+  solution: {
+    label: 'The solution',
+    title: 'This is where ScalUp comes in.',
+    blocks: [
+      [
+        'What we do',
+        'We structure and optimize your acquisition operation by looking at the whole process, from positioning to sales.',
+      ],
+      [
+        'How we do it',
+        'We analyze bottlenecks, identify opportunities and build a strategic plan aligned with your business goals and targets.',
+      ],
+    ],
+    lead: 'Instead of asking “how many leads did we generate this week?”, we want to know:',
+    question: 'How many real opportunities reached your sales team?',
+    flow: ['Positioning', 'Acquisition', 'Conversion', 'Qualification', 'Sales'],
+  },
+  pillars: {
+    label: 'Six pillars. One operation.',
+    title: 'Growth takes more than paid media.',
+    description: 'Strategy and execution connected at every step of the journey.',
+    items: [
+      [
+        'Media & Acquisition',
+        'Strategic management of major paid media platforms, focused on acquisition, performance and scale.',
+      ],
+      [
+        'Conversion',
+        'Landing pages, campaign pages and digital assets designed to turn attention into opportunity.',
+      ],
+      [
+        'Performance Creative',
+        'Creative built to test hypotheses, find winning angles and continuously fuel your media operation.',
+      ],
+      [
+        'Data & Technology',
+        'Tracking, analytics, measurement, dashboards and BI that turn scattered data into information that supports decisions.',
+      ],
+      [
+        'Automation & CRM',
+        'Lead nurturing, routing and qualification workflows, plus tool and CRM integrations so opportunities don’t go cold between marketing and sales.',
+      ],
+      [
+        'Strategy & Sales',
+        'Marketing and sales assessments, audits, strategic planning and sales process design that connect acquisition to revenue.',
+      ],
+    ],
+    visuals: [
+      'Attract',
+      'Convert',
+      'Test. Learn. Evolve.',
+      'Measure to decide',
+      'Connect to move forward',
+      'From strategy to sales',
+    ],
+    tags: [
+      ['Audience', 'Demand'],
+      ['Attention', 'Opportunity'],
+      ['Hypothesis', 'Creative', 'Learning'],
+      ['Tracking', 'Data', 'Decision'],
+      ['Marketing', 'CRM', 'Sales'],
+      ['Assessment', 'Direction', 'Execution'],
+    ],
+  },
+  process: {
+    label: 'How it works',
+    title: 'First we understand. Then we build.',
+    description:
+      'We don’t put every company in the same package. Each operation has its own maturity, structure and opportunities. We start by understanding:',
+    items: [
+      [
+        'Where you are',
+        'We analyze your business model, acquisition, investment and current structure.',
+        'Understand the landscape',
+      ],
+      [
+        'Where the bottlenecks are',
+        'We identify what limits performance, conversion and growth.',
+        'Connect the signals',
+      ],
+      [
+        'Where opportunity lies',
+        'We find what can be optimized, structured or scaled.',
+        'Find potential',
+      ],
+      [
+        'What makes sense to implement',
+        'Based on the assessment, we define the right structure for your company’s current stage.',
+        'Set the direction',
+      ],
+    ],
+    nav: 'Assessment stages',
+  },
+  proof: {
+    label: 'Experience in action',
+    title: 'A few numbers behind ScalUp.',
+    metrics: [
+      ['R$ 10M+', 'in paid media managed'],
+      ['50+', 'businesses served across Brazil'],
+      ['6 years', 'scaling businesses with strategy'],
+    ],
+    clients: 'Companies that have trusted ScalUp',
+  },
+  difference: {
+    label: 'Beyond Ads Manager',
+    title: 'More than another agency to manage your ads.',
+    description:
+      'We are partners in building an acquisition operation that fits your company’s current stage. That means looking beyond Ads Manager:',
+    flow: [
+      'Campaign',
+      'Offer',
+      'Page',
+      'Creative',
+      'Tracking',
+      'Data',
+      'Automation',
+      'Sales Funnel',
+      'Sales',
+    ],
+    conclusion: 'When growth is the goal, optimizing a campaign in isolation is not enough.',
+  },
+  audience: {
+    label: 'Who it is for',
+    title: 'For companies that want to grow with greater clarity.',
+    intro: 'ScalUp is for companies that:',
+    items: [
+      'Already have a sales operation or sales process.',
+      'Already invest in acquisition or are ready to start.',
+      'Want a clearer picture of their marketing returns.',
+      'See potential, but their operation isn’t performing as well as it could.',
+      'Want to move beyond decisions based on guesswork.',
+      'Are ready to build marketing into a growth function.',
+    ],
+    conclusion:
+      'It’s not about company size. It’s about where you are today and how far you want to go.',
+  },
+  final: {
+    title: 'Maybe you don’t need to spend more.',
+    emphasis: 'Maybe you need to invest better.',
+    description:
+      'Discover the main bottlenecks in your marketing and sales operation, and the opportunities you might be missing.',
+  },
+  footer: {
+    description:
+      'Strategy, media, data and sales connected to turn marketing investment into real growth.',
+    contact: 'Contact',
+    explore: 'Explore',
+    location: 'Jundiaí, São Paulo, Brazil',
+    privacy: 'Privacy Policy',
+    rights: 'All rights reserved.',
+  },
+  form: {
+    label: 'Your next move',
+    title: 'Let’s understand your operation.',
+    description:
+      'Tell us a little about your company. Our team will review the information and get in touch to understand how we can help.',
+    note: 'Clarity to decide. Direction to grow.',
+    whatsapp: 'Prefer to talk on WhatsApp?',
+    openWhats: 'Open WhatsApp',
+    progress: 'Assessment progress',
+    diagnosis: 'Your business assessment',
+    steps: ['Your operation', 'Your details', 'Your digital presence'],
+    headings: [
+      'Where is your company today?',
+      'How can we reach you?',
+      'Just a little more context.',
+    ],
+    fields: {
+      faturamento: 'Average monthly revenue',
+      invest: 'Monthly marketing and media investment',
+      dor: 'Main challenge',
+      nome: 'Name',
+      whats: 'WhatsApp with area code',
+      email: 'Email',
+      site: 'What is your website or Instagram?',
+    },
+    placeholders: {
+      nome: 'Your name',
+      whats: '+55 (11) 91821-5500',
+      email: 'name@company.com',
+      site: 'website.com or @yourinstagram',
+    },
+    options: {
+      faturamento: [
+        'Up to R$ 50,000/month',
+        'R$ 50,000–100,000/month',
+        'R$ 100,000–300,000/month',
+        'R$ 300,000–1 million/month',
+        'R$ 1–5 million/month',
+        'Over R$ 5 million/month',
+        'Prefer not to say',
+      ],
+      invest: [
+        'Not investing yet',
+        'Under R$ 5,000/month',
+        'R$ 5,000–15,000/month',
+        'R$ 15,000–30,000/month',
+        'R$ 30,000–60,000/month',
+        'R$ 60,000–150,000/month',
+        'Over R$ 150,000/month',
+      ],
+      dor: [
+        'I don’t know the real return on my marketing investment',
+        'I generate leads, but sales don’t follow',
+        'My pages / campaigns don’t convert well',
+        'My data and tracking are unreliable',
+        'I can’t scale without losing efficiency',
+        'I lack a strategy connecting marketing and sales',
+        'My marketing, CRM and sales process is too manual',
+        'Other',
+      ],
+    },
+    select: 'Select an option',
+    honeypot: 'Leave this field empty',
+    review: 'Review your information',
+    edit: 'Edit',
+    consent: 'By submitting, you agree to be contacted about your request.',
+    back: 'Back',
+    next: 'Continue',
+    submit: 'Talk to ScalUp',
+    sending: 'Sending…',
+    footnote: 'Information to understand your business.',
+    success: 'We’ve received your information.',
+    successNote: 'Our team will review your situation and get in touch.',
+    unavailable: 'Form submission is temporarily unavailable.',
+    errors: {
+      select: 'Select an option to continue.',
+      required: 'Complete this field to continue.',
+      phone: 'Enter a valid Brazilian number with area code, such as +55 (11) 91821-5500.',
+      email: 'Enter a valid email, such as name@company.com.',
+      consent: 'Confirm that we may contact you about your request.',
+      unavailable:
+        'The form is not available for submission yet. Request your assessment on WhatsApp.',
+      rejected:
+        'We couldn’t confirm receipt. Your information is still here. Try again or contact us on WhatsApp.',
+      spam: 'Unable to submit. Reload the page and try again.',
+    },
+  },
+}
