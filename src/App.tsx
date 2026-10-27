@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { ProofSection } from '@/components/sections/ProofSection'
 import { CertificationsSection } from '@/components/sections/CertificationsSection'
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
 import {
   ProblemSection,
   SolutionSection,
@@ -29,6 +30,7 @@ function Page() {
         <ServicesSection />
         <ProcessSection />
         <ProofSection />
+        <TestimonialsSection />
         <CertificationsSection />
         <GrowthSystemSection />
         <AudienceSection />

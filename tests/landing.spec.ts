@@ -161,6 +161,7 @@ for (const width of [390, 768, 1024, 1440]) {
         '#solucoes',
         '#metodo',
         '#resultados',
+        '#depoimentos',
         '#certificacoes',
         '#diferencial',
         '#para-quem',
@@ -184,6 +185,14 @@ for (const width of [390, 768, 1024, 1440]) {
         await expect(cta).toHaveAttribute('href', 'https://wa.me/5511918215500')
       }
       await expect(page.locator('.certification-card')).toHaveCount(4)
+      await expect(page.locator('.testimonial-card')).toHaveCount(5)
+      await expect(page.locator('.testimonial-card figcaption strong')).toHaveText([
+        'Mariana Oliveira',
+        'Rafael Martins',
+        'Camila Ferreira',
+        'Felipe Rodrigues',
+        'Juliana Costa',
+      ])
       await expect(page.locator('.community-panel')).toContainText('Subido Pro')
       await expect(page.locator('.community-panel')).toContainText('Pedro Sobral')
       await expect(page.locator('body')).not.toContainText('ScalUp')
@@ -210,25 +219,22 @@ for (const width of [390, 768, 1024, 1440]) {
           'solucoes',
           'metodo',
           'resultados',
+          'depoimentos',
           'certificacoes',
           'diferencial',
           'para-quem',
         ]) {
-          await page
-            .locator(`#${id}`)
-            .screenshot({
-              path: `research/redesign-review/pt-${width}-${id}.png`,
-              animations: 'disabled',
-              style: '.site-header, .skip-link { visibility: hidden !important; }',
-            })
-        }
-        await page
-          .locator('.final-cta')
-          .screenshot({
-            path: `research/redesign-review/pt-${width}-closing.png`,
+          await page.locator(`#${id}`).screenshot({
+            path: `research/redesign-review/pt-${width}-${id}.png`,
             animations: 'disabled',
             style: '.site-header, .skip-link { visibility: hidden !important; }',
           })
+        }
+        await page.locator('.final-cta').screenshot({
+          path: `research/redesign-review/pt-${width}-closing.png`,
+          animations: 'disabled',
+          style: '.site-header, .skip-link { visibility: hidden !important; }',
+        })
       }
       await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
       await page.screenshot({
