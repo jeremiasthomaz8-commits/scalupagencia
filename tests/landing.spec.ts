@@ -26,7 +26,16 @@ test('responsive layout, real logos, navigation targets and console', async ({ p
     )
   expect(broken).toEqual([])
   await page.locator('.client-wall').scrollIntoViewIfNeeded()
-  await expect(page.locator('.client-wall').first().locator('img')).toHaveCount(16)
+  await expect(page.locator('.client-wall img:not([alt=""])')).toHaveCount(16)
+  await expect(page.locator('.client-marquee-row')).toHaveCount(2)
+  await expect(page.locator('.client-marquee-track').last()).toHaveCSS(
+    'animation-direction',
+    'reverse',
+  )
+  await page.getByRole('button', { name: 'Pausar logos', exact: true }).click()
+  for (const track of await page.locator('.client-marquee-track').all()) {
+    await expect(track).toHaveCSS('animation-play-state', 'paused')
+  }
   await expect
     .poll(() =>
       page
@@ -120,6 +129,7 @@ test('four diagnostic stages and reduced motion keep all content readable', asyn
   await expect(page.locator('h1')).toHaveCSS('opacity', '1')
   await expect(page.locator('.reveal-ready').first()).toHaveCount(0)
   await expect(page.locator('.client-wall').first()).toHaveCSS('display', 'grid')
+  await expect(page.locator('.client-marquee-track').first()).toHaveCSS('animation-name', 'none')
 })
 
 test('language preference survives reload and metadata follows the selected language', async ({
