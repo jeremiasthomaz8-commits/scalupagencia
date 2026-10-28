@@ -93,6 +93,38 @@ test('mobile hero keeps both buttons aligned and the portrait below the copy', a
   }
 })
 
+test('testimonials navigate with arrows, dots and keyboard on mobile and desktop', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 900 })
+    await page.goto('/#depoimentos')
+    const track = page.locator('.testimonial-carousel')
+    const previous = page.getByRole('button', { name: 'Depoimento anterior', exact: true })
+    const next = page.getByRole('button', { name: 'Próximo depoimento', exact: true })
+    await expect(previous).toBeDisabled()
+    for (const name of ['Rafael Martins', 'Camila Ferreira', 'Felipe Rodrigues', 'Juliana Costa']) {
+      await next.click()
+      await expect(page.getByRole('button', { name: `Ver depoimento de ${name}`, exact: true })).toHaveAttribute('aria-pressed', 'true')
+      const slide = track.locator('.testimonial-card').filter({ hasText: name })
+      await expect.poll(async () => {
+        const outer = await track.boundingBox()
+        const inner = await slide.boundingBox()
+        return Math.abs(outer!.x - inner!.x)
+      }).toBeLessThan(2)
+    }
+    await expect(next).toBeDisabled()
+    await page.getByRole('button', { name: 'Ver depoimento de Camila Ferreira', exact: true }).click()
+    await expect(page.getByRole('button', { name: 'Ver depoimento de Camila Ferreira', exact: true })).toHaveAttribute('aria-pressed', 'true')
+    await track.focus()
+    await page.keyboard.press('Home')
+    await expect(previous).toBeDisabled()
+    await page.keyboard.press('ArrowRight')
+    await expect(page.getByRole('button', { name: 'Ver depoimento de Rafael Martins', exact: true })).toHaveAttribute('aria-pressed', 'true')
+    await previous.click()
+    await expect(previous).toBeDisabled()
+  }
+})
+
 test('mobile menu traps focus, closes on Escape and follows links', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')

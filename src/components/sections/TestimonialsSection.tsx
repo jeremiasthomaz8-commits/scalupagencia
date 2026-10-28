@@ -1,4 +1,5 @@
-import { Quote } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { ArrowLeft, ArrowRight, Quote } from 'lucide-react'
 import { useLanguage } from '@/i18n/context'
 import { Reveal, TextReveal } from '@/components/ui/reveal'
 
@@ -48,6 +49,19 @@ const testimonials = [
 export function TestimonialsSection() {
   const { language } = useLanguage()
   const index = language === 'pt' ? 0 : 1
+  const track = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(0)
+  const goTo = (slide: number) => {
+    const element = track.current
+    if (!element) return
+    const target = Math.max(0, Math.min(testimonials.length - 1, slide))
+    element.scrollTo({
+      left: target * (element.clientWidth + 20),
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'instant'
+        : 'smooth',
+    })
+  }
   return (
     <section
       className="section testimonials"
@@ -69,9 +83,46 @@ export function TestimonialsSection() {
               : 'Experiences from those seeking more clarity, strategy and personal support in marketing.'}
           </p>
         </Reveal>
-        <div className="testimonial-grid">
-          {testimonials.map((item) => (
-            <figure className="testimonial-card" key={item.name}>
+        <div
+          className="testimonial-carousel"
+          id="testimonial-slides"
+          ref={track}
+          role="region"
+          aria-label={index === 0 ? 'Carrossel de depoimentos' : 'Testimonial carousel'}
+          tabIndex={0}
+          onScroll={(event) =>
+            setActive(
+              Math.max(
+                0,
+                Math.min(
+                  testimonials.length - 1,
+                  Math.round(
+                    event.currentTarget.scrollLeft / (event.currentTarget.clientWidth + 20),
+                  ),
+                ),
+              ),
+            )
+          }
+          onKeyDown={(event) => {
+            if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
+              event.preventDefault()
+              goTo(
+                event.key === 'Home'
+                  ? 0
+                  : event.key === 'End'
+                    ? testimonials.length - 1
+                    : active + (event.key === 'ArrowRight' ? 1 : -1),
+              )
+            }
+          }}
+        >
+          {testimonials.map((item, position) => (
+            <figure
+              className="testimonial-card"
+              key={item.name}
+              role="group"
+              aria-label={`${position + 1} / ${testimonials.length}`}
+            >
               <Quote size={30} strokeWidth={1.5} aria-hidden="true" />
               <blockquote>
                 <p>“{item.quote[index]}”</p>
@@ -82,6 +133,43 @@ export function TestimonialsSection() {
               </figcaption>
             </figure>
           ))}
+        </div>
+        <div className="testimonial-controls">
+          <button
+            type="button"
+            onClick={() => goTo(active - 1)}
+            disabled={active === 0}
+            aria-controls="testimonial-slides"
+            aria-label={index === 0 ? 'Depoimento anterior' : 'Previous testimonial'}
+          >
+            <ArrowLeft size={20} />
+          </button>
+          <div className="testimonial-dots">
+            {testimonials.map((item, position) => (
+              <button
+                key={item.name}
+                type="button"
+                aria-label={`${index === 0 ? 'Ver depoimento de' : 'View testimonial from'} ${item.name}`}
+                aria-pressed={active === position}
+                aria-controls="testimonial-slides"
+                onClick={() => goTo(position)}
+              >
+                <span />
+              </button>
+            ))}
+          </div>
+          <span className="sr-only" aria-live="polite">
+            {active + 1} / {testimonials.length}
+          </span>
+          <button
+            type="button"
+            onClick={() => goTo(active + 1)}
+            disabled={active === testimonials.length - 1}
+            aria-controls="testimonial-slides"
+            aria-label={index === 0 ? 'Próximo depoimento' : 'Next testimonial'}
+          >
+            <ArrowRight size={20} />
+          </button>
         </div>
       </div>
     </section>
