@@ -34,7 +34,7 @@ export function HeroSection() {
             </div>
             <div className="hero-portrait">
               <img
-                src="/assets/retrato-scalup.png"
+                src="/assets/retrato-scalup.png?v=c8eb1024"
                 alt={t.hero.portraitAlt}
                 width="1254"
                 height="1254"
