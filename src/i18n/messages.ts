@@ -38,7 +38,7 @@ export const pt = {
   },
   problem: {
     label: 'O problema',
-    title: 'Mais leads não resolvem tudo.',
+    title: 'Volume de leads não resolve o seu problema.',
     subtitle:
       'Sua empresa não precisa de mais volume de leads. Precisa de um funil de qualificação.',
     description:
@@ -265,7 +265,7 @@ export const en: Messages = {
   },
   problem: {
     label: 'The problem',
-    title: 'More leads won’t solve everything.',
+    title: 'Lead volume won’t solve your problem.',
     subtitle:
       'Your company doesn’t need a higher volume of leads. It needs a qualification funnel.',
     description:

@@ -42,14 +42,14 @@ export function CertificationsSection() {
             <h3>Subido Pro</h3>
             <p>
               {pt
-                ? 'Participação na comunidade Subido Pro, do Pedro Sobral.'
-                : 'Membership in Pedro Sobral’s Subido Pro community.'}
+                ? 'Participação no Subido Pro, a mentoria do Pedro Sobral que vai além da Comunidade Subido.'
+                : 'Participation in Subido Pro, Pedro Sobral’s mentorship program that goes beyond Comunidade Subido.'}
             </p>
           </div>
           <span>
             {pt
-              ? 'Aprendizado que acompanha a prática.'
-              : 'Learning that goes hand in hand with practice.'}
+              ? 'Onde se reúnem os profissionais mais qualificados do mercado.'
+              : 'Where the market’s most qualified professionals come together.'}
           </span>
         </div>
       </div>
